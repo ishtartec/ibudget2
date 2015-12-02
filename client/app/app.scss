@@ -1,0 +1,70 @@
+$icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
+@import '../bower_components/bootstrap-sass/assets/stylesheets/bootstrap';
+@import '../bower_components/bootstrap-social/bootstrap-social.scss';
+$fa-font-path: "../bower_components/font-awesome/fonts";
+@import '../bower_components/font-awesome/scss/font-awesome';
+
+/**
+ * App-wide Styles
+ */
+
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+// Component styles are injected through grunt
+// injector
+@import 'admin/admin.scss';
+@import 'budgets/budgets.scss';
+@import 'main/main.scss';
+@import '../components/directives/bsConfirm/bsConfirm.scss';
+@import '../components/footer/footer.scss';
+@import '../components/oauth-buttons/oauth-buttons.scss';
+@import '../components/ui/css/sass/1variables-colors.scss';
+@import '../components/ui/css/sass/1variables.scss';
+@import '../components/ui/css/sass/animate-scss.scss';
+@import '../components/ui/css/sass/animations/all.scss';
+@import '../components/ui/css/sass/animations/grow-and-shrink.scss';
+@import '../components/ui/css/sass/animations/slide.scss';
+@import '../components/ui/css/sass/apps/todo.scss';
+@import '../components/ui/css/sass/bootstrap-overrides.scss';
+@import '../components/ui/css/sass/directives/c3.scss';
+@import '../components/ui/css/sass/directives/todo-widget.scss';
+@import '../components/ui/css/sass/functions.scss';
+@import '../components/ui/css/sass/materialism.scss';
+@import '../components/ui/css/sass/materialism/alert.scss';
+@import '../components/ui/css/sass/materialism/base.scss';
+@import '../components/ui/css/sass/materialism/buttons.scss';
+@import '../components/ui/css/sass/materialism/cards.scss';
+@import '../components/ui/css/sass/materialism/colors.scss';
+@import '../components/ui/css/sass/materialism/forms.scss';
+@import '../components/ui/css/sass/materialism/navbar.scss';
+@import '../components/ui/css/sass/materialism/panels.scss';
+@import '../components/ui/css/sass/materialism/scrollbar.scss';
+@import '../components/ui/css/sass/materialism/sidebar.scss';
+@import '../components/ui/css/sass/materialism/switch.scss';
+@import '../components/ui/css/sass/materialism/tables.scss';
+@import '../components/ui/css/sass/materialism/theme-picker.scss';
+@import '../components/ui/css/sass/materialism/theme.scss';
+@import '../components/ui/css/sass/materialism/themes.scss';
+@import '../components/ui/css/sass/materialism/timeline.scss';
+@import '../components/ui/css/sass/materialism/zdepth.scss';
+@import '../components/ui/css/sass/pages/colors.scss';
+@import '../components/ui/css/sass/pages/dashboard.scss';
+@import '../components/ui/css/sass/pages/full-map.scss';
+@import '../components/ui/css/sass/pages/grid.scss';
+@import '../components/ui/css/sass/pages/icons.scss';
+@import '../components/ui/css/sass/pages/standalone/all.scss';
+@import '../components/ui/css/sass/pages/standalone/login.scss';
+@import '../components/ui/css/sass/pages/tables.scss';
+@import '../components/ui/css/sass/pages/vector-map.scss';
+@import '../components/ui/css/sass/pages/weather-icons.scss';
+@import '../components/ui/css/sass/plugins/aside.scss';
+@import '../components/ui/css/sass/plugins/fsm-sticky-header.scss';
+@import '../components/ui/css/sass/plugins/jquery.nouislider.scss';
+@import '../components/ui/css/sass/plugins/weather-icons.scss';
+@import '../components/ui/css/sass/roboto.scss';
+// endinjector

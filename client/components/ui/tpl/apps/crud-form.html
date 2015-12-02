@@ -1,0 +1,360 @@
+<div class="aside bs-docs-aside" tabindex="-1" role="dialog">
+    <div class="close">
+        <div class="btn btn-round btn-info" ng-click="$hide()"><i class="md md-close"></i></div>
+    </div>
+
+    <div class="aside-dialog">
+        <div class="aside-body bs-sidebar">
+            <form class="form-horizontal placeholder-form" novalidate="novalidate" ng-submit="saveItem(item)">
+                <fieldset>
+                    <legend><span ng-bind-html="item.icon"></span> {{cmd}} {{settings.singular}}</legend>
+                    <span class="help-block m-b-20">Please fill out the following form below.</span>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" ng-model="item.name" placeholder="Budget Name"
+                                   ng-disabled="!item.editing" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" ng-model="item.customer" placeholder="Customer"
+                                   ng-disabled="!item.editing" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Instructor</label>
+
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.instructorFee"
+                                   ng-change="updateBudget()" placeholder="Fee" ng-disabled="!item.editing" required>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.instructorHours"
+                                   ng-change="updateBudget()" placeholder="Hours" ng-disabled="!item.editing" required>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.instructorTotal"
+                                   placeholder="Total" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Vendor</label>
+
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.vendorFee"
+                                   ng-change="updateBudget()" placeholder="Fee" ng-disabled="!item.editing" required>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.vendorCount"
+                                   ng-change="updateBudget()" placeholder="Count" ng-disabled="!item.editing" required>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.vendorTotal" placeholder="Total"
+                                   disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Manuals</label>
+
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.manualsFee"
+                                   ng-change="updateBudget()" placeholder="Fee" ng-disabled="!item.editing" required>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.manualsCount"
+                                   ng-change="updateBudget()" placeholder="Count" ng-disabled="!item.editing" required>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.manualsTotal" placeholder="Total"
+                                   disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Expenses</label>
+
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.expensesFee"
+                                   ng-change="updateBudget()" placeholder="Fee" ng-disabled="!item.editing" required>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.expensesCount"
+                                   ng-change="updateBudget()" placeholder="Count" ng-disabled="!item.editing" required>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.expensesTotal" placeholder="Total"
+                                   disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Travel</label>
+
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.travelCost"
+                                   ng-change="updateBudget()" placeholder="Fee" ng-disabled="!item.editing" required>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.travelCount"
+                                   ng-change="updateBudget()" placeholder="Count" ng-disabled="!item.editing" required>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.travelTotal" placeholder="Total"
+                                   disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">PUE</label>
+
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.pueCost"
+                                   ng-change="updateBudget()" placeholder="Fee" ng-disabled="!item.editing" required>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.pueCount"
+                                   ng-change="updateBudget()" placeholder="Count" ng-disabled="!item.editing" required>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.pueTotal" placeholder="Total"
+                                   disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Other</label>
+
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.otherCost"
+                                   ng-change="updateBudget()" placeholder="Fee" ng-disabled="!item.editing" required>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.otherCount"
+                                   ng-change="updateBudget()" placeholder="Count" ng-disabled="!item.editing" required>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.otherTotal" placeholder="Total"
+                                   disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Date</label>
+
+                        <div class="col-md-6">
+                            <input type="text" size="10" class="form-control" ng-model="item.date" data-autoclose="1"
+                                   placeholder="Date" bs-datepicker ng-disabled="!item.editing">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-offset-4 col-md-5 control-label">Indirect Cost (20%)</label>
+
+                        <div class="col-md-3">
+                            {{item.ic | currency:"€"}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-offset-4 col-md-5 control-label">Direct Cost</label>
+
+                        <div class="col-md-3">
+                            {{item.dc | currency:"€"}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-offset-4 col-md-5 control-label">Benefit vs Income</label>
+
+                        <div class="col-md-3">
+                            {{item.bi | number:2}} %
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-offset-4 col-md-5 control-label">Total</label>
+
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-change="updateBudget()" ng-model="item.total"
+                                   step='0.01' placeholder="Total">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label class="control-label normal">Accepted?</label>
+                            <div class="switch">
+                                <label>
+                                    No
+                                    <input type="checkbox" ng-model="item.accepted">
+                                    <span class="lever"></span>
+                                    Yes
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label normal">Approved? <span ng-show="item.approved">(Approved by: {{item.approvedBy}})</span></label>
+                            <div class="switch">
+                                <label>
+                                    No
+                                    <input type="checkbox" ng-model="item.approved" ng-change="updateApproved(item.approved)">
+                                    <span class="lever"></span>
+                                    Yes
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Comments</label>
+                        <textarea class="form-control vertical" rows="3" ng-model="item.comments"
+                                  ng-disabled="!item.editing"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <a ng-href="#" ng-click="calculateBudget()" class="btn btn-lg btn-default" ng-hide="!item.editing">Calculate</a>
+                            <button type="submit" class="btn btn-lg btn-primary" ng-hide="!item.editing">Save</button>
+                        </div>
+                    </div>
+
+                    <br/>
+                    <br/>
+                </fieldset>
+            </form>
+            <!--
+            <form class="form-floating" novalidate="novalidate" ng-submit="saveItem(item)">
+                <fieldset>
+                    <legend><span ng-bind-html="item.icon"></span> {{cmd}} {{settings.singular}}</legend>
+
+                    <div class="form-group filled">
+                        <label class="control-label">Budget Name</label>
+                        <input type="text" class="form-control" ng-model="item.name" ng-disabled="!item.editing"
+                               required>
+                    </div>
+
+                    <div class="form-group filled">
+                        <label class="control-label">Customer</label>
+                        <input type="text" class="form-control" ng-model="item.customer" ng-disabled="!item.editing"
+                               required>
+                    </div>
+                    <div class="form-group filled">
+                        <label class="control-label">Instructor</label>
+                        <input type="number" class="form-control" ng-model="item.instructorFee"
+                               ng-change="updateBudget()" placeholder="Fee" required>
+                        <input type="number" class="form-control" ng-model="item.instructorHours"
+                               ng-change="updateBudget()" placeholder="Hours" required>
+                        <input type="number" class="form-control" ng-model="item.instructorTotal" placeholder="Total"
+                               disabled>
+                    </div>
+                    <div class="form-group filled">
+                        <label class="control-label">Vendor</label>
+
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.vendorFee"
+                                   ng-change="updateBudget()" placeholder="Fee" required>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.vendorCount"
+                                   ng-change="updateBudget()" placeholder="Count" required>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.vendorTotal" placeholder="Total"
+                                   disabled>
+                        </div>
+                    </div>
+                    <div class="form-group filled">
+                        <label class="control-label">Manuals</label>
+
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.manualsFee"
+                                   ng-change="updateBudget()" placeholder="Fee" required>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.manualsCount"
+                                   ng-change="updateBudget()" placeholder="Count" required>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.manualsTotal" placeholder="Total"
+                                   disabled>
+                        </div>
+                    </div>
+                    <div class="form-group filled">
+                        <label class="control-label">Expenses</label>
+
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.expensesFee"
+                                   ng-change="updateBudget()" placeholder="Fee" required>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.expensesCount"
+                                   ng-change="updateBudget()" placeholder="Count" required>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.expensesTotal" placeholder="Total"
+                                   disabled>
+                        </div>
+                    </div>
+                    <div class="form-group filled">
+                        <label class="control-label">Travel</label>
+
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.travelCost"
+                                   ng-change="updateBudget()" placeholder="Fee" required>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.travelCount"
+                                   ng-change="updateBudget()" placeholder="Count" required>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-model="item.travelTotal" placeholder="Total"
+                                   disabled>
+                        </div>
+                    </div>
+                    <div class="form-group filled">
+                        <label class="control-label">Date</label>
+
+                        <div class="col-md-6">
+                            <input type="text" size="10" class="form-control" ng-model="item.date" data-autoclose="1"
+                                   placeholder="Date" bs-datepicker>
+                        </div>
+                    </div>
+                    <div class="form-group filled">
+                        <label class="col-md-offset-4 col-md-5 control-label">Indirect Cost (20%)</label>
+
+                        <div class="col-md-3">
+                            {{item.ic | currency:"€"}}
+                        </div>
+                    </div>
+                    <div class="form-group filled">
+                        <label class="col-md-offset-4 col-md-5 control-label">Direct Cost</label>
+
+                        <div class="col-md-3">
+                            {{item.dc | currency:"€"}}
+                        </div>
+                    </div>
+                    <div class="form-group filled">
+                        <label class="col-md-offset-4 col-md-5 control-label">Benefit vs Income</label>
+
+                        <div class="col-md-3">
+                            {{item.bi | number:2}} %
+                        </div>
+                    </div>
+                    <div class="form-group filled">
+                        <label class="col-md-offset-4 col-md-5 control-label">Total</label>
+
+                        <div class="col-md-3">
+                            <input type="number" class="form-control" ng-change="updateBudget()" ng-model="item.total"
+                                   step='0.01' placeholder="Total">
+                        </div>
+                    </div>
+                    <div class="form-group filled">
+                        <label class="control-label">Fecha de Nacimiento</label>
+                        <input type="text" class="form-control" ng-model="item.birthday" data-autoclose="1" bs-datepicker>
+                    </div>
+
+                    <div class="form-group filled">
+                        <label class="control-label">Comments</label>
+                        <textarea class="form-control vertical" rows="3" ng-model="item.comments"
+                                  ng-disabled="!item.editing"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-lg btn-primary" ng-hide="!item.editing">Save</button>
+                    </div>
+                </fieldset>
+            </form>
+            -->
+
+        </div>
+    </div>
+</div>

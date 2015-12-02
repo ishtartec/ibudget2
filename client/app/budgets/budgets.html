@@ -1,0 +1,83 @@
+<section>
+    <div class="page-header">
+        <div class="actions">
+            <button type="button" class="btn btn-link btn-round-sm theme-secondary-text"><span
+                    class="md md-info-outline"></span></button>
+            <button type="button" class="btn btn-link btn-round-sm theme-secondary-text"><span
+                    class="md md-search"></span></button>
+        </div>
+
+        <h1>
+            <i class="md md-camera"></i>
+            Budgets
+        </h1>
+
+        <p class="lead">
+            This table shows all the budgets. There are two important fields: Accepted and Approved. Please follow the guidelines.
+        </p>
+    </div>
+</section>
+
+<div class="table-responsive well no-padding white no-margin">
+    <h3 class="table-title">{{budgets.length}} {{settings.plural}} available</h3>
+
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-addon"><span class="md md-search"></span></div>
+            <input type="text" class="form-control" placeholder="Search budget" ng-model="searchBudget">
+        </div>
+    </div>
+
+    <table class="table table-full m-b-60" id="table-area-1" fsm-big-data="budgets of budgets take 30">
+        <thead>
+        <tr fsm-sticky-header scroll-body="'#table-area-1'" scroll-stop="64">
+            <th><input type="checkbox" class="relative" ng-model="selectAll" ng-click="checkAll()"/></th>
+            <!--<th>Icon</th>-->
+            <th fsm-sort="name">Name</th>
+            <th fsm-sort="createdBy">Created By</th>
+            <th fsm-sort="date">Tentative</th>
+            <th fsm-sort="customer">Customer</th>
+            <th fsm-sort="total">Total</th>
+            <th fsm-sort="bi">BvsI</th>
+            <th fsm-sort="accepted">Accepted</th>
+            <th fsm-sort="approved">Approved</th>
+            <th class="text-right">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in budgets | filter:searchBudget" ng-click="item.selected=!item.selected" ng-dblclick="editItem(item)">
+            <td><input type="checkbox" class="relative" ng-model="item.selected" ng-click="$event.stopPropagation()"/>
+            </td>
+            <!--<td ng-bind-html="item.icon" class="f20"></td>-->
+            <td>{{ item.name }}</td>
+            <td>{{ item.createdBy }}</td>
+            <td>{{ item.date | date:'mediumDate' }}</td>
+            <td>{{ item.customer }}</td>
+            <td>{{ item.total | currency: "€" }}</td>
+            <td>{{ item.bi | number:2 }} %</td>
+            <td><span ng-bind-html="item.accepted | checkmarkFilter"></span></td>
+            <td><span ng-bind-html="item.approved | checkmarkFilter"></span></td>
+            <td class="text-right" ng-click="$event.stopPropagation()">
+                <button type="button" class="btn btn-link btn-round" data-title="Edit item" ng-click="editItem(item)"><i
+                        class="md md-edit"></i></button>
+                <button type="button" class="btn btn-link btn-round" data-title="View item" ng-click="viewItem(item)"><i
+                        class="md md-search"></i></button>
+                <button type="button" class="btn btn-link btn-round" bs-confirm="deleteBudget(item)"
+                        data-title="Confirm you want to delete the budget?"
+                        data-content="This action cannot be undone!"><i class="md md-delete"></i></button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div class="footer-buttons">
+    <div class="btn btn-danger btn-round btn-lg m-r-10 btn-footer" ng-show="(budgets|filter:{selected: true}).length"
+         ng-click="remove()" data-title="Remove {{(patients|filter:{selected: true}).length}} item(s)" bs-tooltip><i
+            class="md md-delete"></i></div>
+    <div class="btn btn-default btn-round btn-lg m-r-10 btn-footer" scroll-to="top" ng-hide="scroll<100"
+         data-title="Scroll to top" bs-tooltip><i class="md md-arrow-drop-up"></i></div>
+    <div class="btn btn-primary btn-round btn-lg" ng-click="createItem()" data-title="New {{settings.singular}}"
+         bs-tooltip><i class="md md-add"></i></div>
+</div>
