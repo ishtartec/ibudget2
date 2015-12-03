@@ -1,16 +1,34 @@
 'use strict';
 
 angular.module('ibudgetApp')
-  .controller('AdminCtrl', function($scope, $http, Auth, User, toastr, $aside) {
+  .controller('AdminCtrl', function($scope, $http, Auth, User, toastr, $aside, socket) {
 
       // Use the User $resource to fetch all users
-      $scope.users = User.query();
+      //$scope.users = User.query();
+      User.query(function (result) {
+          $scope.users = result;
+          socket.syncUpdates('user', $scope.users);
+      });
+      $scope.$on('$destroy', function () {
+          socket.unsyncUpdates('user');
+      });
       $scope.getCurrentUser = Auth.getCurrentUser;
 
       $scope.delete = function(user) {
-          User.remove({ id: user._id });
-          $scope.users.splice(this.$index, 1);
+          User.remove({ id: user._id }, function() {
+              $scope.users = User.query();
+          });
+          //$scope.users.splice(this.$index, 1);
       };
+
+      $scope.deleteUser = function (user) {
+          console.log('You confirmed "Yes."');
+          User.remove({id: user._id}, function () {
+              $scope.users = User.query();
+              toastr.info('User deleted');
+          });
+      };
+
       // CRUD Definition
       // settings
       $scope.settings = {
@@ -58,6 +76,7 @@ angular.module('ibudgetApp')
       $scope.createItem = function(){
           var item = {
               date: new Date(),
+              provider: 'local',
               lastmodified: new Date(),
               createdBy: $scope.getCurrentUser().email,
               editing: true
@@ -73,12 +92,14 @@ angular.module('ibudgetApp')
               User.save($scope.item, function(res) {
                   console.log('Saved');
                   toastr.info('Added new user');
+                  $scope.users = User.query();
               });
           } else {
               $scope.item.lastmodified = new Date();
               User.updateUser({id: $scope.item._id}, $scope.item, function (res) {
                   console.log('Updated...');
                   toastr.info('User updated');
+                  $scope.users = User.query();
               });
           }
           hideForm();

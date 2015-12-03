@@ -25,11 +25,11 @@
 
                         <div class="col-md-3">
                             <input type="number" class="form-control" ng-model="item.instructorFee"
-                                   ng-change="updateBudget()" placeholder="Fee" ng-disabled="!item.editing" required>
+                                   ng-change="updateBudget()" placeholder="Fee" ng-disabled="!item.editing" >
                         </div>
                         <div class="col-md-3">
                             <input type="number" class="form-control" ng-model="item.instructorHours"
-                                   ng-change="updateBudget()" placeholder="Hours" ng-disabled="!item.editing" required>
+                                   ng-change="updateBudget()" placeholder="Hours" ng-disabled="!item.editing" >
                         </div>
                         <div class="col-md-3">
                             <input type="number" class="form-control" ng-model="item.instructorTotal"
@@ -41,11 +41,11 @@
 
                         <div class="col-md-3">
                             <input type="number" class="form-control" ng-model="item.vendorFee"
-                                   ng-change="updateBudget()" placeholder="Fee" ng-disabled="!item.editing" required>
+                                   ng-change="updateBudget()" placeholder="Fee" ng-disabled="!item.editing" >
                         </div>
                         <div class="col-md-3">
                             <input type="number" class="form-control" ng-model="item.vendorCount"
-                                   ng-change="updateBudget()" placeholder="Count" ng-disabled="!item.editing" required>
+                                   ng-change="updateBudget()" placeholder="Count" ng-disabled="!item.editing" >
                         </div>
                         <div class="col-md-3">
                             <input type="number" class="form-control" ng-model="item.vendorTotal" placeholder="Total"
@@ -57,11 +57,11 @@
 
                         <div class="col-md-3">
                             <input type="number" class="form-control" ng-model="item.manualsFee"
-                                   ng-change="updateBudget()" placeholder="Fee" ng-disabled="!item.editing" required>
+                                   ng-change="updateBudget()" placeholder="Fee" ng-disabled="!item.editing" >
                         </div>
                         <div class="col-md-3">
                             <input type="number" class="form-control" ng-model="item.manualsCount"
-                                   ng-change="updateBudget()" placeholder="Count" ng-disabled="!item.editing" required>
+                                   ng-change="updateBudget()" placeholder="Count" ng-disabled="!item.editing" >
                         </div>
                         <div class="col-md-3">
                             <input type="number" class="form-control" ng-model="item.manualsTotal" placeholder="Total"
@@ -73,11 +73,11 @@
 
                         <div class="col-md-3">
                             <input type="number" class="form-control" ng-model="item.expensesFee"
-                                   ng-change="updateBudget()" placeholder="Fee" ng-disabled="!item.editing" required>
+                                   ng-change="updateBudget()" placeholder="Fee" ng-disabled="!item.editing" >
                         </div>
                         <div class="col-md-3">
                             <input type="number" class="form-control" ng-model="item.expensesCount"
-                                   ng-change="updateBudget()" placeholder="Count" ng-disabled="!item.editing" required>
+                                   ng-change="updateBudget()" placeholder="Count" ng-disabled="!item.editing" >
                         </div>
                         <div class="col-md-3">
                             <input type="number" class="form-control" ng-model="item.expensesTotal" placeholder="Total"
@@ -89,11 +89,11 @@
 
                         <div class="col-md-3">
                             <input type="number" class="form-control" ng-model="item.travelCost"
-                                   ng-change="updateBudget()" placeholder="Fee" ng-disabled="!item.editing" required>
+                                   ng-change="updateBudget()" placeholder="Fee" ng-disabled="!item.editing" >
                         </div>
                         <div class="col-md-3">
                             <input type="number" class="form-control" ng-model="item.travelCount"
-                                   ng-change="updateBudget()" placeholder="Count" ng-disabled="!item.editing" required>
+                                   ng-change="updateBudget()" placeholder="Count" ng-disabled="!item.editing" >
                         </div>
                         <div class="col-md-3">
                             <input type="number" class="form-control" ng-model="item.travelTotal" placeholder="Total"
@@ -105,11 +105,11 @@
 
                         <div class="col-md-3">
                             <input type="number" class="form-control" ng-model="item.pueCost"
-                                   ng-change="updateBudget()" placeholder="Fee" ng-disabled="!item.editing" required>
+                                   ng-change="updateBudget()" placeholder="Fee" ng-disabled="!item.editing" >
                         </div>
                         <div class="col-md-3">
                             <input type="number" class="form-control" ng-model="item.pueCount"
-                                   ng-change="updateBudget()" placeholder="Count" ng-disabled="!item.editing" required>
+                                   ng-change="updateBudget()" placeholder="Count" ng-disabled="!item.editing" >
                         </div>
                         <div class="col-md-3">
                             <input type="number" class="form-control" ng-model="item.pueTotal" placeholder="Total"
@@ -121,11 +121,11 @@
 
                         <div class="col-md-3">
                             <input type="number" class="form-control" ng-model="item.otherCost"
-                                   ng-change="updateBudget()" placeholder="Fee" ng-disabled="!item.editing" required>
+                                   ng-change="updateBudget()" placeholder="Fee" ng-disabled="!item.editing" >
                         </div>
                         <div class="col-md-3">
                             <input type="number" class="form-control" ng-model="item.otherCount"
-                                   ng-change="updateBudget()" placeholder="Count" ng-disabled="!item.editing" required>
+                                   ng-change="updateBudget()" placeholder="Count" ng-disabled="!item.editing" >
                         </div>
                         <div class="col-md-3">
                             <input type="number" class="form-control" ng-model="item.otherTotal" placeholder="Total"
@@ -143,9 +143,9 @@
                     <div class="form-group">
                         <label class="col-md-offset-4 col-md-5 control-label">Indirect Cost (20%)</label>
 
-                        <div class="col-md-3">
+                        <span class="col-md-3">
                             {{item.ic | currency:"€"}}
-                        </div>
+                        </span>
                     </div>
                     <div class="form-group">
                         <label class="col-md-offset-4 col-md-5 control-label">Direct Cost</label>
@@ -162,6 +162,13 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-md-offset-4 col-md-5 control-label">Net Margin</label>
+
+                        <div class="col-md-3">
+                            {{item.total - item.dc | currency:"€"}}
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-md-offset-4 col-md-5 control-label">Total</label>
 
                         <div class="col-md-3">
@@ -175,7 +182,7 @@
                             <div class="switch">
                                 <label>
                                     No
-                                    <input type="checkbox" ng-model="item.accepted">
+                                    <input type="checkbox" ng-model="item.accepted" ng-disabled="!item.editing">
                                     <span class="lever"></span>
                                     Yes
                                 </label>
@@ -186,7 +193,7 @@
                             <div class="switch">
                                 <label>
                                     No
-                                    <input type="checkbox" ng-model="item.approved" ng-change="updateApproved(item.approved)">
+                                    <input type="checkbox" ng-model="item.approved" ng-change="updateApproved(item.approved)" ng-disabled="!item.editing">
                                     <span class="lever"></span>
                                     Yes
                                 </label>
@@ -204,6 +211,7 @@
                         <div class="col-lg-10 col-lg-offset-2">
                             <a ng-href="#" ng-click="calculateBudget()" class="btn btn-lg btn-default" ng-hide="!item.editing">Calculate</a>
                             <button type="submit" class="btn btn-lg btn-primary" ng-hide="!item.editing">Save</button>
+                            <button type="submit" class="btn btn-lg btn-warning" ng-click="settings.cmd='New'" ng-hide="!item.editing">Clone</button>
                         </div>
                     </div>
 

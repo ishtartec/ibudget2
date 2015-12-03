@@ -4,6 +4,8 @@ import User from './user.model';
 import passport from 'passport';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
+import _ from 'lodash';
+
 
 function validationError(res, statusCode) {
   statusCode = statusCode || 422;
@@ -44,7 +46,7 @@ exports.index = function(req, res) {
 exports.create = function(req, res, next) {
   var newUser = new User(req.body);
   newUser.provider = 'local';
-  newUser.role = 'user';
+  newUser.role = typeof (newUser.role) !== 'undefined' ? newUser.role : 'user';
   newUser.saveAsync()
     .spread(function(user) {
       var token = jwt.sign({ _id: user._id }, config.secrets.session, {

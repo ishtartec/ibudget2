@@ -28,13 +28,14 @@ angular.module('ibudgetApp')
         });
 
         $scope.updateBudget = function () {
-            $scope.item.instructorTotal = $scope.item.instructorFee * $scope.item.instructorHours;
-            $scope.item.vendorTotal = $scope.item.vendorFee * $scope.item.vendorCount;
-            $scope.item.manualsTotal = $scope.item.manualsFee * $scope.item.manualsCount;
-            $scope.item.expensesTotal = $scope.item.expensesFee * $scope.item.expensesCount;
-            $scope.item.travelTotal = $scope.item.travelCost * $scope.item.travelCount;
-            $scope.item.pueTotal = $scope.item.pueCost * $scope.item.pueCount;
-            $scope.item.otherTotal = $scope.item.otherCost * $scope.item.otherCount;
+            //console.log('otherTotal: ' + (+$scope.item.otherCost||0) + ' ' + (+$scope.item.otherCount||0));
+            $scope.item.instructorTotal = (+$scope.item.instructorFee||0) * (+$scope.item.instructorHours||0);
+            $scope.item.vendorTotal = (+$scope.item.vendorFee||0) * (+$scope.item.vendorCount||0);
+            $scope.item.manualsTotal = (+$scope.item.manualsFee||0) * (+$scope.item.manualsCount||0);
+            $scope.item.expensesTotal = (+$scope.item.expensesFee||0) * (+$scope.item.expensesCount||0);
+            $scope.item.travelTotal = (+$scope.item.travelCost||0) * (+$scope.item.travelCount||0);
+            $scope.item.pueTotal = (+$scope.item.pueCost||0) * (+$scope.item.pueCount||0);
+            $scope.item.otherTotal = (+$scope.item.otherCost||0) * (+$scope.item.otherCount||0);
             $scope.item.ic = 0.2 * Number($scope.item.total).toFixed(2);
             $scope.item.dc = $scope.item.instructorTotal + $scope.item.vendorTotal + $scope.item.manualsTotal +
                 $scope.item.expensesTotal + $scope.item.travelTotal + $scope.item.pueTotal + $scope.item.otherTotal;
@@ -44,7 +45,7 @@ angular.module('ibudgetApp')
 
         $scope.calculateBudget = function () {
             //console.log('Calculando...');
-            $scope.item.total = (-100 * $scope.item.dc) / (25 - 80);
+            $scope.item.total = Math.round(((-100 * $scope.item.dc) / (25 - 80))*100) / 100;
             $scope.updateBudget();
         };
 
@@ -111,10 +112,14 @@ angular.module('ibudgetApp')
 
         $scope.saveItem = function () {
             if ($scope.settings.cmd == 'New') {
+                if (typeof ($scope.item._id) !== 'undefined') {
+                    delete $scope.item._id;
+                }
                 //$scope.data.push($scope.item);
                 BService.save($scope.item, function (res) {
                     console.log('Saved');
                     toastr.info('New Budget Added');
+                    $scope.budgets = BService.query();
                 });
             } else {
                 $scope.item.lastmodified = new Date();
@@ -142,9 +147,9 @@ angular.module('ibudgetApp')
             }
         };
 
-        $scope.deleteBudget = function (patient) {
+        $scope.deleteBudget = function (budget) {
             console.log('You confirmed "Yes."');
-            BService.delete({id: patient._id}, function () {
+            BService.delete({id: budget._id}, function () {
                 console.log('Budget deleted...');
                 toastr.info('Budget deleted');
             });

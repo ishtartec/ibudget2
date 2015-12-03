@@ -19,6 +19,13 @@
     <div class="table-responsive well no-padding white no-margin">
         <h3 class="table-title">{{users.length}} {{settings.plural}} available</h3>
 
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon"><span class="md md-search"></span></div>
+                <input type="text" class="form-control" placeholder="Search user" ng-model="searchUser">
+            </div>
+        </div>
+
         <table class="table table-full m-b-60" id="table-area-1" fsm-big-data="users of users take 30">
             <thead>
             <tr fsm-sticky-header scroll-body="'#table-area-1'" scroll-stop="64">
@@ -31,7 +38,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="item in users" ng-click="item.selected=!item.selected"  ng-dblclick="editItem(item)">
+            <tr ng-repeat="item in users | filter:searchUser " ng-click="item.selected=!item.selected"  ng-dblclick="editItem(item)">
                 <td><input type="checkbox" class="relative" ng-model="item.selected" ng-click="$event.stopPropagation()" /></td>
                 <!--<td ng-bind-html="item.icon" class="f20"></td>-->
                 <td>{{ item.name }}</td>
@@ -40,8 +47,9 @@
                 <td class="text-right" ng-click="$event.stopPropagation()">
                     <button type="button" class="btn btn-link btn-round" data-title="Edit item"  ng-click="editItem(item)"><i class="md md-edit"></i></button>
                     <button type="button" class="btn btn-link btn-round" data-title="View item" ng-click="viewItem(item)"><i class="md md-search"></i></button>
-                    <!--<a ui-sref="/patient/{{item._id}}" class="btn btn-link btn-round" data-title="Medical Records"><i class="md md-local-hospital"></i></a>-->
-                    <button type="button" class="btn btn-link btn-round" data-title="Delete item" ng-click="remove(item)"><i class="md md-delete"></i></button>
+                    <!--<button type="button" class="btn btn-link btn-round" data-title="Delete item" ng-click="remove(item)"><i class="md md-delete"></i></button>-->
+                    <button type="button" class="btn btn-link btn-round" bs-confirm="deleteUser(item)"
+                            data-title="Confirm you want to delete the user?" data-content="This action cannot be undone!"><i class="md md-delete"></i></button>
                 </td>
             </tr>
             </tbody>
