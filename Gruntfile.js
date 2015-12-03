@@ -495,7 +495,8 @@ module.exports = function (grunt) {
                     reporter: 'spec',
                     require: ['mocha.conf.js'],
                     mask: '**/*.spec.js',
-                    coverageFolder: 'coverage/server/unit'
+                    coverageFolder: 'coverage/server/unit',
+		    reportFormats: ['cobertura','lcovonly', 'clover']
                 },
                 src: '<%= yeoman.server %>'
             },
@@ -505,7 +506,8 @@ module.exports = function (grunt) {
                     reporter: 'spec',
                     require: ['mocha.conf.js'],
                     mask: '**/*.integration.js',
-                    coverageFolder: 'coverage/server/integration'
+                    coverageFolder: 'coverage/server/integration',
+                    reportFormats: ['cobertura','lcovonly', 'clover']
                 },
                 src: '<%= yeoman.server %>'
             }
