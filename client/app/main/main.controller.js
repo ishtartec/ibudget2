@@ -153,22 +153,22 @@
                     $scope.yearStats.nov.total,
                     $scope.yearStats.dec.total];
                 //$scope.totalSalesYear = [43,43,45,42,40,40,40,40,42,40,40,40,42,45,46,45,43,45,44,42];
-                //$scope.myChartData = [{"data1":10,"data2":20},{"data1":50,"data2":60}];
-                //$scope.myChartColumns = [{"id": "data1", "type": "line"}, {"id": "data2", "type": "bar"}];
+                //$scope.myChartData = [{'data1':10,'data2':20},{'data1':50,'data2':60}];
+                //$scope.myChartColumns = [{'id': 'data1', 'type': 'line'}, {'id': 'data2', 'type': 'bar'}];
                 $scope.myChartDataTotal = [
-                    {"sales":$scope.yearStats.jan.total.toFixed(2)}, {"sales":$scope.yearStats.feb.total.toFixed(2)}, {"sales":$scope.yearStats.mar.total.toFixed(2)},
-                    {"sales":$scope.yearStats.apr.total.toFixed(2)}, {"sales":$scope.yearStats.may.total.toFixed(2)}, {"sales":$scope.yearStats.jun.total.toFixed(2)},
-                    {"sales":$scope.yearStats.jul.total.toFixed(2)}, {"sales":$scope.yearStats.aug.total.toFixed(2)}, {"sales":$scope.yearStats.sep.total.toFixed(2)},
-                    {"sales":+$scope.yearStats.oct.total.toFixed(2)}, {"sales":$scope.yearStats.nov.total.toFixed(2)}, {"sales":$scope.yearStats.dec.total.toFixed(2)}
+                    {'sales':$scope.yearStats.jan.total.toFixed(2)}, {'sales':$scope.yearStats.feb.total.toFixed(2)}, {'sales':$scope.yearStats.mar.total.toFixed(2)},
+                    {'sales':$scope.yearStats.apr.total.toFixed(2)}, {'sales':$scope.yearStats.may.total.toFixed(2)}, {'sales':$scope.yearStats.jun.total.toFixed(2)},
+                    {'sales':$scope.yearStats.jul.total.toFixed(2)}, {'sales':$scope.yearStats.aug.total.toFixed(2)}, {'sales':$scope.yearStats.sep.total.toFixed(2)},
+                    {'sales':+$scope.yearStats.oct.total.toFixed(2)}, {'sales':$scope.yearStats.nov.total.toFixed(2)}, {'sales':$scope.yearStats.dec.total.toFixed(2)}
                 ];
-                $scope.myChartColumnsTotal = [{"id": "sales", "type": "line"}];
+                $scope.myChartColumnsTotal = [{'id': 'sales', 'type': 'line'}];
                 $scope.myChartDataSales = [
-                    {"sales":$scope.yearStats.jan.sales}, {"sales":$scope.yearStats.feb.sales}, {"sales":$scope.yearStats.mar.sales},
-                    {"sales":$scope.yearStats.apr.sales}, {"sales":$scope.yearStats.may.sales}, {"sales":$scope.yearStats.jun.sales},
-                    {"sales":$scope.yearStats.jul.sales}, {"sales":$scope.yearStats.aug.sales}, {"sales":$scope.yearStats.sep.sales},
-                    {"sales":$scope.yearStats.oct.sales}, {"sales":$scope.yearStats.nov.sales}, {"sales":$scope.yearStats.dec.sales}
+                    {'sales':$scope.yearStats.jan.sales}, {'sales':$scope.yearStats.feb.sales}, {'sales':$scope.yearStats.mar.sales},
+                    {'sales':$scope.yearStats.apr.sales}, {'sales':$scope.yearStats.may.sales}, {'sales':$scope.yearStats.jun.sales},
+                    {'sales':$scope.yearStats.jul.sales}, {'sales':$scope.yearStats.aug.sales}, {'sales':$scope.yearStats.sep.sales},
+                    {'sales':$scope.yearStats.oct.sales}, {'sales':$scope.yearStats.nov.sales}, {'sales':$scope.yearStats.dec.sales}
                 ];
-                $scope.myChartColumnsSales = [{"id": "sales", "type": "line"}];
+                $scope.myChartColumnsSales = [{'id': 'sales', 'type': 'line'}];
                 console.log('totalSalesYear: ' + JSON.stringify($scope.myChartDataTotal));
 
             });

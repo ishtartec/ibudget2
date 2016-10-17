@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ibudgetApp')
-    .controller('BudgetsCtrl', function ($scope, socket, Auth, $aside, BService) {
+    .controller('BudgetsCtrl', function ($scope, socket, Auth, $aside, BService, toastr) {
         var self = this;
         this.awesomeThings = [];
         this.isLoggedIn = Auth.isLoggedIn;
@@ -36,7 +36,7 @@ angular.module('ibudgetApp')
             $scope.item.travelTotal = (+$scope.item.travelCost||0) * (+$scope.item.travelCount||0);
             $scope.item.pueTotal = (+$scope.item.pueCost||0) * (+$scope.item.pueCount||0);
             $scope.item.otherTotal = (+$scope.item.otherCost||0) * (+$scope.item.otherCount||0);
-            $scope.item.ic = 0.2 * Number($scope.item.total).toFixed(2);
+            $scope.item.ic = 0.3 * Number($scope.item.total).toFixed(2);
             $scope.item.dc = $scope.item.instructorTotal + $scope.item.vendorTotal + $scope.item.manualsTotal +
                 $scope.item.expensesTotal + $scope.item.travelTotal + $scope.item.pueTotal + $scope.item.otherTotal;
             $scope.item.bi = ($scope.item.total - $scope.item.dc - $scope.item.ic) * 100 / $scope.item.total;
@@ -45,12 +45,12 @@ angular.module('ibudgetApp')
 
         $scope.calculateBudget = function () {
             //console.log('Calculando...');
-            $scope.item.total = Math.round(((-100 * $scope.item.dc) / (25 - 80))*100) / 100;
+            $scope.item.total = Math.round(((-100 * $scope.item.dc) / (27 - 70))*100) / 100;
             $scope.updateBudget();
         };
 
         $scope.updateApproved = function (approved) {
-            approved ? $scope.item.approvedBy = $scope.getCurrentUser().email : $scope.item.approvedBy = '';
+            $scope.item.approvedBy = $scope.getCurrentUser().email;
         };
 
         // CRUD Definition
@@ -111,12 +111,12 @@ angular.module('ibudgetApp')
         };
 
         $scope.saveItem = function () {
-            if ($scope.settings.cmd == 'New') {
+            if ($scope.settings.cmd === 'New') {
                 if (typeof ($scope.item._id) !== 'undefined') {
                     delete $scope.item._id;
                 }
                 //$scope.data.push($scope.item);
-                BService.save($scope.item, function (res) {
+                BService.save($scope.item, function () {
                     console.log('Saved');
                     toastr.info('New Budget Added');
                     $scope.budgets = BService.query();
@@ -124,7 +124,7 @@ angular.module('ibudgetApp')
             } else {
                 $scope.item.lastmodified = new Date();
                 $scope.item.updatedBy = $scope.getCurrentUser().email;
-                BService.update({id: $scope.item._id}, $scope.item, function (res) {
+                BService.update({id: $scope.item._id}, $scope.item, function () {
                     console.log('Updated...');
                     toastr.info('Budget Updated');
                 });

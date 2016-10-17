@@ -87,16 +87,16 @@ angular.module('ibudgetApp')
       };
 
       $scope.saveItem = function(){
-          if($scope.settings.cmd == 'New'){
+          if($scope.settings.cmd === 'New'){
               //$scope.data.push($scope.item);
-              User.save($scope.item, function(res) {
+              User.save($scope.item, function() {
                   console.log('Saved');
                   toastr.info('Added new user');
                   $scope.users = User.query();
               });
           } else {
               $scope.item.lastmodified = new Date();
-              User.updateUser({id: $scope.item._id}, $scope.item, function (res) {
+              User.updateUser({id: $scope.item._id}, $scope.item, function () {
                   console.log('Updated...');
                   toastr.info('User updated');
                   $scope.users = User.query();
